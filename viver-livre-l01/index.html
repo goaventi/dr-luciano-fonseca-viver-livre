@@ -254,27 +254,6 @@ src="https://www.facebook.com/tr?id=867100978384810&ev=PageView&noscript=1"
     background:var(--near-black);
   }
 
-  /* ---------- Countdown bar ---------- */
-  .countdown-bar{
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:6px;
-    flex-wrap:wrap;
-    background:var(--lime-500);
-    color:var(--near-black);
-    text-align:center;
-    font-family:'Baloo 2',sans-serif;
-    font-weight:700;
-    font-size:14px;
-    padding:12px 16px;
-  }
-  .countdown-bar strong{
-    font-family:'IBM Plex Mono',monospace;
-    font-weight:600;
-    letter-spacing:.02em;
-  }
-
   .esconder{
     display:none;
   }
@@ -284,7 +263,12 @@ src="https://www.facebook.com/tr?id=867100978384810&ev=PageView&noscript=1"
 
 <body>
 
-  <div class="countdown-bar">✅ Faltam apenas <strong id="countdown-time">07h:37min:00s</strong> pra este tutorial da cadeira sair do ar.</div>
+  <aside class="top-alert" aria-label="Aviso importante">
+    <div class="top-alert-inner">
+      <span class="top-alert-icon" aria-hidden="true">!</span>
+      <p><strong>ATENÇÃO</strong><span>Ative o som e assista ao vídeo. O Dr. Luciano explica nele o seu próximo passo.</span></p>
+    </div>
+  </aside>
 
   <header class="site-header">
     <a class="site-brand" href="../viver-livre-l01/" aria-label="Programa Viver Livre">
@@ -295,13 +279,8 @@ src="https://www.facebook.com/tr?id=867100978384810&ev=PageView&noscript=1"
   </header>
 
   <main>
-  <div class="page-intro">
-    <span class="eyebrow">Programa Viver Livre</span>
-    <h1>Uma nova forma de <span>viver em movimento.</span></h1>
-    <p>Assista à apresentação do Dr. Luciano Fonseca e conheça o programa completo.</p>
-  </div>
-
-  <div class="video-shell">
+  <h1 class="sr-only">Programa Viver Livre</h1>
+  <div class="video-shell main-video">
 <vturb-smartplayer id="vid-6a70b3afce1530e329a718a5" style="display: block; margin: 0 auto; width: 100%; max-width: 400px;"><div class="vturb-player-placeholder" style="position: relative; width: 100%; padding: 177.77777777777777% 0 0; z-index: 0; background-color: black;"></div></vturb-smartplayer> <script type="text/javascript"> var s=document.createElement("script"); s.src="https://scripts.converteai.net/0cc1921d-72c5-4ab2-aa78-7ecedfba624e/players/6a70b3afce1530e329a718a5/v4/player.js", s.async=!0,document.head.appendChild(s); </script>
     <p class="video-caption">Assista ao vídeo para conhecer todos os detalhes</p>
   </div>
@@ -348,36 +327,6 @@ src="https://www.facebook.com/tr?id=867100978384810&ev=PageView&noscript=1"
 
   </div>
   </main>
-
-  <script>
-    (function(){
-      var DURATION = (7 * 60 + 37) * 60; // 07h:37min em segundos
-      var STORAGE_KEY = 'vsl_countdown_deadline';
-      var el = document.getElementById('countdown-time');
-      var deadline = parseInt(localStorage.getItem(STORAGE_KEY), 10);
-      var now = Math.floor(Date.now() / 1000);
-
-      if (!deadline || deadline < now) {
-        deadline = now + DURATION;
-        localStorage.setItem(STORAGE_KEY, deadline);
-      }
-
-      function pad(n){ return String(n).padStart(2, '0'); }
-
-      function tick(){
-        var remaining = deadline - Math.floor(Date.now() / 1000);
-        if (remaining < 0) remaining = 0;
-        var h = Math.floor(remaining / 3600);
-        var m = Math.floor((remaining % 3600) / 60);
-        var s = remaining % 60;
-        el.textContent = pad(h) + 'h:' + pad(m) + 'min:' + pad(s) + 's';
-        if (remaining <= 0) clearInterval(interval);
-      }
-
-      tick();
-      var interval = setInterval(tick, 1000);
-    })();
-  </script>
 
 </body>
 </html>
